@@ -61,18 +61,22 @@ slides.forEach((element, i) => {
 	li.classList.add('slide');
 	if(i === currentIndex)
 		li.classList.add('active');
-	// console.log(li)
 
 	slidesWrapper.append(li);
 
 	slideActiveArray.push(li);
-	// console.log(slideActiveArray)
 });
 
 const arrowNext = document.querySelector('.arrow-next')
+arrowNext.addEventListener('click', goNext)
 
-arrowNext.addEventListener('click', function() {
+const arrowPrev = document.querySelector('.arrow-prev')
+arrowPrev.addEventListener('click', goPrev)
 
+
+
+//FUNCTIONS
+function goNext() {
 	let slideAttiva = slideActiveArray[currentIndex]
 	slideAttiva.classList.remove('active');
 		
@@ -84,12 +88,10 @@ arrowNext.addEventListener('click', function() {
 		currentIndex = 0;
 		slideActiveArray[currentIndex].classList.add('active')
 	}
-})
+}
 
-const arrowPrev = document.querySelector('.arrow-prev')
 
-arrowPrev.addEventListener('click', function() {
-
+function goPrev() {
 	let slideAttiva = slideActiveArray[currentIndex]
 	slideAttiva.classList.remove('active');
 		
@@ -101,4 +103,4 @@ arrowPrev.addEventListener('click', function() {
 		currentIndex = slideActiveArray.length-1;
 		slideActiveArray[currentIndex].classList.add('active')
 	}
-})
+}
