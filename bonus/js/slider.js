@@ -74,11 +74,16 @@ const arrowPrev = document.querySelector('.arrow-prev')
 arrowPrev.addEventListener('click', goPrev)
 
 // autoplay, ogni 3 secoindi cambia slide
-let startInterval = setInterval(goNext, 3000)
+let startInterval = setInterval(startAutoplay, 3000);
 
 // stop autoplay quando il mouse si posizione sopra al carosello
 const slider = document.querySelector('.slider');
-slider.addEventListener('mouseover', stopInterval)
+slider.addEventListener('mouseover', stopAutoplay)
+
+//riprendi autoplay quando il mouse esce dal carosello
+slider.addEventListener('mouseout', function(){
+	startInterval = setInterval(goNext, 3000);
+})
 
 
 //extra bonus: Aggiungiano un pulsante che inverte la direzione dell’autoplay (invece di andare avanti le slide andranno all’indietro e viceversa)
@@ -94,10 +99,16 @@ button.addEventListener('click', function(){
 })
 
 //FUNCTIONS
-function stopInterval() {
+function stopAutoplay() {
 	const stop = clearInterval(startInterval);
 	console.log('stop autoplay')
 	return stop;
+}
+
+function startAutoplay() {
+	const start = goNext();
+	console.log('start autoplay');
+	return start;
 }
 
 
