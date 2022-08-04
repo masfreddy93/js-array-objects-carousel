@@ -37,6 +37,7 @@ const slides = [
 //generare murkup da js
 const slidesWrapper = document.querySelector('.slides-wrapper')
 let currentIndex = 0;
+const slideActiveArray = [];
 
 
 slides.forEach((element, i) => {
@@ -60,9 +61,44 @@ slides.forEach((element, i) => {
 	li.classList.add('slide');
 	if(i === currentIndex)
 		li.classList.add('active');
-	
-	console.log(li)
+	// console.log(li)
 
 	slidesWrapper.append(li);
+
+	slideActiveArray.push(li);
+	// console.log(slideActiveArray)
 });
 
+const arrowNext = document.querySelector('.arrow-next')
+
+arrowNext.addEventListener('click', function() {
+
+	let slideAttiva = slideActiveArray[currentIndex]
+	slideAttiva.classList.remove('active');
+		
+	if(currentIndex < slideActiveArray.length-1){
+		currentIndex++;
+		let slideSuccessiva = slideActiveArray[currentIndex];
+		slideSuccessiva.classList.add('active')
+	} else {
+		currentIndex = 0;
+		slideActiveArray[currentIndex].classList.add('active')
+	}
+})
+
+const arrowPrev = document.querySelector('.arrow-prev')
+
+arrowPrev.addEventListener('click', function() {
+
+	let slideAttiva = slideActiveArray[currentIndex]
+	slideAttiva.classList.remove('active');
+		
+	if(currentIndex > 0){
+		currentIndex--;
+		let slidePrecedente = slideActiveArray[currentIndex];
+		slidePrecedente.classList.add('active')
+	} else {
+		currentIndex = slideActiveArray.length-1;
+		slideActiveArray[currentIndex].classList.add('active')
+	}
+})
