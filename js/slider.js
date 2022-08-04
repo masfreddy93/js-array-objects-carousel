@@ -33,3 +33,30 @@ const slides = [
 			'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam.',
 	},
 ]
+
+//generare murkup da js
+const slidesWrapper = document.querySelector('.slides-wrapper')
+
+
+slides.forEach((element) => {
+	const title = document.createElement('h3');
+	title.append(element.title);
+	title.className = 'slide__title';
+
+	const description = document.createElement('p');
+	description.append(element.description);
+	description.className = 'slide__description';
+
+	const slideContent = document.createElement('div');
+	slideContent.append(title, description);
+	slideContent.className = 'slide__content';
+
+	const img = document.createElement('img');
+	img.src = element.url
+
+	const li = document.createElement('li');
+	li.append(img, slideContent);
+	li.classList.add('slide', 'active')
+
+	slidesWrapper.append(li);
+});
