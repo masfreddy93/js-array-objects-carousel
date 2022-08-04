@@ -36,9 +36,10 @@ const slides = [
 
 //generare murkup da js
 const slidesWrapper = document.querySelector('.slides-wrapper')
+let currentIndex = 0;
 
 
-slides.forEach((element) => {
+slides.forEach((element, i) => {
 	const title = document.createElement('h3');
 	title.append(element.title);
 	title.className = 'slide__title';
@@ -56,7 +57,12 @@ slides.forEach((element) => {
 
 	const li = document.createElement('li');
 	li.append(img, slideContent);
-	li.classList.add('slide', 'active')
+	li.classList.add('slide');
+	if(i === currentIndex)
+		li.classList.add('active');
+	
+	console.log(li)
 
 	slidesWrapper.append(li);
 });
+
