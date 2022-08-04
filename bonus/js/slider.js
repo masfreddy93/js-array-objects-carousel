@@ -74,10 +74,22 @@ const arrowPrev = document.querySelector('.arrow-prev')
 arrowPrev.addEventListener('click', goPrev)
 
 // autoplay, ogni 3 secoindi cambia slide
-setInterval(goNext, 3000)
+const startInterval = setInterval(goNext, 3000)
+
+// stop autoplay quando il mouse si posizione sopra al carosello
+const slider = document.querySelector('.slider');
+slider.addEventListener('mouseover', stopInterval)
+
+
 
 
 //FUNCTIONS
+function stopInterval() {
+	const stop = clearInterval(startInterval);
+	return stop;
+}
+
+
 function goNext() {
 	let slideAttiva = slideActiveArray[currentIndex]
 	slideAttiva.classList.remove('active');
