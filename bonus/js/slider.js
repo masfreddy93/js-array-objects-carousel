@@ -73,6 +73,8 @@ arrowNext.addEventListener('click', goNext)
 const arrowPrev = document.querySelector('.arrow-prev')
 arrowPrev.addEventListener('click', goPrev)
 
+// autoplay, ogni 3 secoindi cambia slide
+setInterval(goNext, 3000)
 
 
 //FUNCTIONS
